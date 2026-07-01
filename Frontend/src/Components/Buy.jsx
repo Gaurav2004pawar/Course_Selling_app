@@ -55,7 +55,7 @@ const Buy = () => {
 
         // Create Stripe Checkout Session
         const response = await axios.post(
-          `http://localhost:3000/courseName/buy/${courseId}`,
+          `${BACKEND_URL }/courseName/buy/${courseId}`,
           {},
           {
             headers: {

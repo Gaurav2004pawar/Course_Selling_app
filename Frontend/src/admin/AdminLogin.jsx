@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Navbar } from "../Components/Navbar";
 import { toast } from "react-toastify";
+import { BACKEND_URL } from "../utils/utils";
 
 const  AdminLogin= () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -18,7 +19,7 @@ const  AdminLogin= () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/user/admin/login",
+        `${BACKEND_URL }/user/admin/login`,
         {
           email,
           password,
