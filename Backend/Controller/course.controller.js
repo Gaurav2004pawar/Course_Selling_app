@@ -243,9 +243,9 @@ const buyCourses = async (req, res) => {
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
-success_url: `http://localhost:5173/purchases/${courseId}?success=true&session_id={CHECKOUT_SESSION_ID}`,
+success_url: `${process.env.FRONTEND_URL}/purchases/${courseId}?success=true&session_id={CHECKOUT_SESSION_ID}`,
 
-      cancel_url: `http://localhost:5173/buy/${courseId}?canceled=true`,
+      cancel_url: `${process.env.FRONTEND_URL}/buy/${courseId}?canceled=true`,
 
       metadata: {
         userId: userId.toString(),
