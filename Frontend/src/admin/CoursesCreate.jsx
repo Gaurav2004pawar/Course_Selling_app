@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { BACKEND_URL } from "../utils/utils";
 
 const CoursesCreate = () => {
   const [title, setTitle] = useState("");
@@ -47,7 +48,7 @@ const CoursesCreate = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/courseName/create",
+        `${BACKEND_URL }/courseName/create`,
         formData,
         {
           headers: {

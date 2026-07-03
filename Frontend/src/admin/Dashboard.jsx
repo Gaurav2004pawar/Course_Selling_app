@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { BACKEND_URL } from "../utils/utils";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ const Dashboard = () => {
   const handleLogOut = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/user/admin/logout",
+        `${BACKEND_URL }/user/admin/logout`,
         {
           withCredentials: true,
         }

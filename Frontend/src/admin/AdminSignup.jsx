@@ -3,6 +3,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Navbar } from "../Components/Navbar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "../utils/utils";
 
 const AdminSignup = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -22,7 +23,7 @@ const AdminSignup = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/user/admin/signup",
+        `${BACKEND_URL }/user/admin/signup`,
         {
           firstName,
           lastName,
