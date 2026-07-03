@@ -32,6 +32,7 @@ const  AdminLogin= () => {
         }
       );
       navigate("/admin/dashboard");
+      console.log(response.status);
       console.log(response.data);
     toast.success("Login Successfully!");
     
