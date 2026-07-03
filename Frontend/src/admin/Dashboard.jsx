@@ -56,26 +56,26 @@ const Dashboard = () => {
     <div className="w-full px-5 mt-8 space-y-3">
 
       <Link to="/admin/our-courses">
-        <button className="w-full bg-green-700 hover:bg-green-800 text-white py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105">
+        <button className="m-2 w-full bg-green-700 hover:bg-green-800 text-white py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105">
           Our Courses
         </button>
       </Link>
 
       <Link to="/admin/create-course">
-        <button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105">
+        <button className="m-2 w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105">
           Create Course
         </button>
       </Link>
 
       <Link to="/">
-        <button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105">
+        <button className="m-2 w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105">
           Home
         </button>
       </Link>
 
       <button
         onClick={handleLogOut}
-        className="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
+        className="m-2 w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
       >
         Logout
       </button>
