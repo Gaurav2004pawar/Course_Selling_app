@@ -34,6 +34,14 @@ app.use(
   })
 );
 
+app.get("/health", (req, res) => {
+  const databaseReady = mongoose.connection.readyState === 1;
+
+  res.status(databaseReady ? 200 : 503).json({
+    status: databaseReady ? "ok" : "database unavailable",
+  });
+});
+
 // cloudinary config
 cloudinary.config({
    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -46,22 +54,24 @@ app.use("/courseName", courseRoutes);
 app.use("/user", userRouter);
 app.use("/user/admin", adminRouter);
 
-// DB connection
-const dbconnect= async()=>{
-    try {
-        await mongoose.connect(process.env.MONGODB_URI)
-        console.log("connect to mongodb")
-        
-    } catch (error) {
-        console.log(error)
-        
-    }
-}
-dbconnect();
-
-// server start
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
+const startServer = async () => {
+  if (!process.env.MONGODB_URI) {
+    throw new Error("MONGODB_URI is not configured");
+  }
+
+  await mongoose.connect(process.env.MONGODB_URI, {
+    serverSelectionTimeoutMS: 10000,
+  });
+
+  console.log("Connected to MongoDB");
+  app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server running on ${PORT}`);
+  });
+};
+
+startServer().catch((error) => {
+  console.error("Unable to start server:", error.message);
+  process.exit(1);
 });
