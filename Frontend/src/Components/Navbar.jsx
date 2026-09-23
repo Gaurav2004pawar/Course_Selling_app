@@ -13,14 +13,14 @@ export const Navbar = () => {
 
         <div className="space-x-4">
           <Link
-            to="/admin/login"
+            to="/login"
             className="border border-white px-5 py-2 rounded hover:bg-white hover:text-black"
           >
             Login
           </Link>
 
           <Link
-            to="/admin/signup"
+            to="/signup"
             className="border border-white px-5 py-2 rounded hover:bg-white hover:text-black"
           >
             Signup
