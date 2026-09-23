@@ -17,16 +17,25 @@ app.use(cookieParser());
 
 const allowedOrigins = [
   process.env.FRONTEND_URL,
+  "https://course-selling-app-hazel.vercel.app",
   "http://localhost:5173",
   "http://127.0.0.1:5173",
-].filter(Boolean);
+].filter(Boolean).map((origin) => origin.trim().replace(/\/$/, ""));
 
 // middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: (origin, callback) => {
+      const normalizedOrigin = origin?.trim().replace(/\/$/, "");
+
+      if (!normalizedOrigin || allowedOrigins.includes(normalizedOrigin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Origin is not allowed by CORS"));
+    },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
